@@ -8,7 +8,7 @@ class Basket {                                                // On crée une cl
         }
     }
 
-    save() {                                            // Il permet d'enregistrer le panier dans le localStorage          
+    save() {                                                  // Il permet d'enregistrer le panier dans le localStorage          
         localStorage.setItem('basket', JSON.stringify(this.basket));   // Lorsque on enregistre qqch dans le local storage on utilise setitem suivie d'une clé contenant une valeur : ici la clé est 'basket' et la valeur est basket (le panier). Problème dans le localstorage on ne peut pas enregistrer de données complexes (comme des tableaux ou des objets) on ne peut enregistrer que des chaines de caractères, des entiers etc du coup on est obligé d'utilsier la sérialisation (ça signifie qu'on passe une donnée complexe en une chaine de caractères). this.basket est le panier de la classe (c'est à dire que this.basket est le panier de l'utilisateur). 
     }
 
