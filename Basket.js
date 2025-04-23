@@ -45,8 +45,18 @@ function changeQuantity(product, quantity) {
 
 function getNumberProduct() {                                 // On crée la fonction qui va nous permettre de récupérer le nombre de produits dans le panier
     let basket = getBasket();                                 // On récupère le panier du local storage
-    let number = 0;                                           // On initialise une variable number à 0 (c'est à dire qu'on va compter le nombre de produits dans le panier
+    let number = 0;                                           // On initialise une variable number à 0 (c'est à dire qu'on va compter le nombre de produits dans le panier)
     for (let product of basket) {                             // On parcourt le panier (on va faire une boucle sur le panier)
         number += product.quantity;                           // On va ajouter la quantité de chaque produit dans le panier à la variable number (on va donc compter le nombre de produits dans le panier)
     }
     return number;                                            // On retourne le nombre de produits dans le panier
+}
+
+function getTotalPrice() {
+    let basket = getBasket();                                 // On récupère le panier du local storage
+    let total = 0;                                            // On initialise une variable totalPrice à 0 (c'est à dire qu'on va compter le prix total des produits dans le panier)
+    for (let product of basket) {                             // On parcourt le panier (on va faire une boucle sur le panier)
+        total += product.price * product.quantity;            // On va ajouter le prix de chaque produit multiplié par sa quantité à la variable totalPrice (on va donc compter le prix total des produits dans le panier)
+    }
+    return total;                                             // On retourne le prix total des produits dans le panier
+}
