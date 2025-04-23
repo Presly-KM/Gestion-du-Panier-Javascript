@@ -1,16 +1,20 @@
-
+class Basket {                                                // On crée une classe Basket qui va nous permettre de gérer le panier
+    constructor() {                                           // On crée le constructeur de la classe Basket. On va ici récupérer le panier du local storage et l'initialiser dans la classe
+        let basket = localStorage.getItem("basket");          // On va chercher le panier dans le local storage. On utilise getitem pour récupérer le panier du local storage. On va stocker le panier dans une variable basket
+        if (basket == null) {                                 // Si le panier est null (c'est à dire qu'il n'existe pas encore du au fait que quand l'utilisateur arrive sur le site,logiquement, il n'a pas encore eu à utiliser le panier, par exemple en ajoutant des produits à l'intérieur) on fait alors comprendre a la console que cela signifie que le panier est probablement vide.
+            this.basket = [];                                 // On initialise le panier dans la classe à un tableau vide (c'est à dire qu'il n'y a pas de produits dans le panier) pour éviter d'avoir une erreur plus tard quand on va essayer de push un produit dans le panier. this.basket est le panier de la classe (c'est à dire que this.basket est le panier de l'utilisateur)
+        } else {                                              // Sinon (c-à-dire si le panier existe déjà ) on va le récupérer et le transformer en tableau (cf ligne suivante)
+            return JSON.parse(basket);                        // On va donc le parser (c'est à dire qu'on va le transformer en tableau) pour pouvoir l'utiliser dans la classe. On utilise JSON.parse pour transformer la chaine de caractères en tableau. On retourne le panier (this.basket) pour pouvoir l'utiliser dans la classe. 
+        }
+    }
+}                                        
 
 function saveBasket(basket) {                                 // Il permet d'enregistrer le panier dans le localStorage          
     localStorage.setItem('basket', JSON.stringify(basket));   // Lorsque on enregistre qqch dans le local storage on utilise setitem suivie d'une clé contenant une valeur : ici la clé est 'basket' et la valeur est basket (le panier). Problème dans le localstorage on ne peut pas enregistrer de données complexes (comme des tableaux ou des objets) on ne peut enregistrer que des chaines de caractères, des entiers etc du coup on est obligé d'utilsier la sérialisation (ça signifie qu'on passe une donnée complexe en une chaine de caractères)
 }
 
 function getBasket() {                                        // Il permet de récupérer le panier enregistré dans le localStorage
-    let basket = localStorage.getItem("basket");              // On va chercher le panier dans le local storage. On utilise getitem pour récupérer le panier du local storage. On va stocker le panier dans une variable basket
-    if (basket == null) {                                     // Si le panier est null (c'est à dire qu'il n'existe pas encore du au fait que quand l'utilisateur arrive sur le site,logiquement, il n'a pas encore eu à utiliser le panier, par exemple en ajoutant des produits à l'intérieur) on fait alors comprendre a la console que cela signifie que le panier est probablement vide.
-        return [];                                            // On retourne un tableau vide (c'est à dire qu'il n'y a pas de produits dans le panier) pour éviter d'avoir une erreur plus tard quand on va essayer de push un produit dans le panier. 
-    } else {                                                  // Sinon (c-à-dire si le panier existe déjà ) on va le récupérer et le transformer en tableau (cf ligne suivante)
-        return JSON.parse(basket);                            // ATTENTION : Plus haut on a enregistré en veillant a sérialiser les données ,maintenant qu'il s'agit de récupérer les données sauvegardées, on doit utiliser JSON.Parse ce qui va permettre de transformer la chaine de caractère à nouveau en objet/tableau/données complexes. On utilise getitem pour récupérer le panier du local storage. On retourne le panier récupéré du local storage
-    }
+    
 }
 
 function addBasket(product) {                                 // On crée la fonction d'ajout au panier. Il permet d'ajouter un produit au panier. Il prend en paramètre le produit à ajouter. Permettra lorsqu'on appellera la focntion de dire : c'est ce produit là que je veux ajouter au panier.
